@@ -20,7 +20,7 @@
     //Middleware
         app.use((req, res, next) =>{
             res.locals.success_msg = req.flash("success_msg"); //criando variável global
-            res.locals.error_msg = req.flash("error_msg"); //criando variável global
+            res.locals.erro_msg = req.flash("erro_msg"); //criando variável global
             next(); //passa a requisição adiante
         })
     //Body Parser
