@@ -10,6 +10,8 @@
     const flash = require("connect-flash");
     require("./models/Posts");
     const Postagem = mongoose.model("postagens");
+    require("./models/Categoria");
+    const Categoria = mongoose.model("categorias");
 
 //Configurações    
     //Sessao
@@ -55,6 +57,35 @@
         })
     })
 
+    app.get("/categorias", (req, res) =>{
+        Categoria.find().then((categorias) =>{
+            res.render("categorias/indexCateg", {categorias: categorias});
+        }).catch((erro) =>{
+            req.flash("erro_msg", "erro ao listar categorias.");
+            res.redirect("/");
+        })
+    })
+
+    app.get("/categorias/:slug", (req, res) =>{
+        Categoria.findOne({slug:req.params.slug}).then((categoria) =>{
+            if(categoria){
+                Postagem.find({categoria: categoria._id}).then((postagens) =>{
+                    res.render("categorias/postagens", {postagens: postagens, categoria: categoria})
+                }).catch((erro) =>{
+                    req.flash("erro_msg", "erro ao listar posts.");
+                    res.redirect("/categorias");
+                })
+            }            
+            else{
+                req.flash("erro_msg", "categoria nao existe.");
+                res.redirect("/categorias");
+            }
+
+        }).catch((erro) =>{
+            req.flash("erro_msg", "erro interno.");
+            res.redirect("/categorias");
+        })
+    })
     
 
     app.get("/404", (req, res) =>{
