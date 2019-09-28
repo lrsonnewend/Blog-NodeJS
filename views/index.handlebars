@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <h1 class="display-4">Simple Blog Node</h1>
+  <p class="lead">Aqui apresento meu projeto inicial construído com o NodeJS
+      com funcionalidades de cadastro de posts e categorias, além de conter uma página criada para adms.</p>
+  <hr class="my-4">
+  <p>Crie uma conta para poder cadastrar postagens e tornar-se um administrador!</p>
+  <br>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Criar conta</a>
+</div>
+<hr class="my-4">
+
+<h3>Postagens recentes</h3>
+{{#each postagens}}
+<div class="card mt-3">
+    <div class="card-body">
+        <h6>{{categoria.nome}}</h6>
+        <hr>
+        <h4>{{titulo}}</h4>
+        <p>{{descricao}}</p>
+        <small>Criado em {{data}}</small>
+        <hr>
+        <a href="/postagem/{{slug}}"<button class="btn btn-info btn-sm">Ler mais</button></a>
+    </div>
+</div>
+{{else}}
+    <h4>Nada registrado.</h4>
+{{/each}}
