@@ -4,9 +4,9 @@
 {{#each categorias}}
     <div class="card mt-4">
         <div class="card-body">
-            <h4>{{nome}}</h4>
-            <h6>{{slug}}</h6>
-            <small>{{data}}</small>
+            <h4>Nome: {{nome}}</h4>
+            <h6>Slug: {{slug}}</h6>
+            <small>Criada em: {{data}}</small>
             <br><a href="/admin/categorias/edit/{{_id}}"><button class="btn btn-secondary mt-4">Editar</button></a>
             <form action="/admin/categorias/deletar" method="post">
                 <input type="hidden" name="id" value="{{_id}}">
