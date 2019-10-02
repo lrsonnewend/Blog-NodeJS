@@ -12,6 +12,9 @@
     const Postagem = mongoose.model("postagens");
     require("./models/Categoria");
     const Categoria = mongoose.model("categorias");
+    const usuarios = require("./routers/usuario");
+    const passport = require("passport");
+    require("./config/autent")(passport);
 
 //Configurações    
     //Sessao
@@ -19,15 +22,24 @@
             secret: "cursodenode",
             resave: true,
             saveUninitialized: true
-        })) //criando middleares
-        app.use(flash())
+        }))
+        
+    //passport
+        app.use(passport.initialize());
+        app.use(passport.session());
+    
+    //flash
+        app.use(flash());
     
     //Middleware
         app.use((req, res, next) =>{
             res.locals.success_msg = req.flash("success_msg"); //criando variável global
             res.locals.erro_msg = req.flash("erro_msg"); //criando variável global
+            res.locals.error = req.flash("error"); //criando variável global
             next(); //passa a requisição adiante
+
         })
+
     //Body Parser
         app.use(bodyParser.urlencoded({extended: true}));
         app.use(bodyParser.json());
@@ -35,7 +47,7 @@
     //Handlebars
         app.engine("handlebars", handlebars({defaultLayout: "main"}));
         app.set("view engine", "handlebars");
-
+        
     //Mongoose
     mongoose.Promise = global.Promise;
         mongoose.connect("mongodb://localhost/posts").then(() =>{
@@ -108,11 +120,13 @@
     })
     
     app.use("/admin", admin);
+    app.use("/usuarios", usuarios);
 
 
 
 //Outros
-    const porta = 8081;
-    app.listen(porta, () =>{
-        console.log("servidor conectado.")
-    })
+    //configurando servidor
+        const porta = 8081;
+        app.listen(porta, () =>{
+            console.log("servidor conectado.")
+        })
