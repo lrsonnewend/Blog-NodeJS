@@ -13,12 +13,22 @@
       <li class="nav-item">
         <a class="nav-link" href="/categorias">Categorias</a>
       </li>
+
+      {{#if user}}
+
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Registro</a>
+        <a class="nav-link" href="/usuarios/logout" tabindex="-1" aria-disabled="true">Logout</a>
       </li>
+
+      {{else}}
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Login</a>
+        <a class="nav-link" href="/usuarios/registo" tabindex="-1" aria-disabled="true">Registro</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/usuarios/login" tabindex="-1" aria-disabled="true">Login</a>
+      </li>
+      {{/if}}
       <li class="nav-item">
         <a class="nav-link" href="/admin/sobre">Sobre</a>
       </li>

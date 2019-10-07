@@ -89,4 +89,10 @@
         })(req, res, next)
     })
 
+    router.get("/logout", (req, res) =>{
+        req.logout();
+        req.flash("success_msg", "logout realizado.");
+        res.redirect("/");
+    })
+
 module.exports = router;

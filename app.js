@@ -36,6 +36,8 @@
             res.locals.success_msg = req.flash("success_msg"); //criando variável global
             res.locals.erro_msg = req.flash("erro_msg"); //criando variável global
             res.locals.error = req.flash("error"); //criando variável global
+            res.locals.user = req.user || null; //armazena os dados do usuário autenticado
+            //req.user  -> passport cria automaticamente. É usado para armazenas dados do usuário que estará logado.
             next(); //passa a requisição adiante
 
         })

@@ -15,7 +15,7 @@ const Usuario = new Schema({
         required: true
     },
 
-    admin: {
+    isAdmin: {
         type: Number,
         default: 0
     }
