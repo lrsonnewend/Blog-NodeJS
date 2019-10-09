@@ -15,6 +15,7 @@
     const usuarios = require("./routers/usuario");
     const passport = require("passport");
     require("./config/autent")(passport);
+    const db = require("./config/db");
 
 //Configurações    
     //Sessao
@@ -52,7 +53,7 @@
         
     //Mongoose
     mongoose.Promise = global.Promise;
-        mongoose.connect("mongodb://localhost/posts").then(() =>{
+        mongoose.connect(db.mongoURI).then(() =>{
             console.log("conectado ao mongo");
         }).catch((erro) =>{
             console.log("erro na conexao: "+erro);
@@ -128,7 +129,8 @@
 
 //Outros
     //configurando servidor
-        const porta = 8081;
+    
+        const porta = process.env.porta || 8081; //configurando variável de ambiente do node para o heroku
         app.listen(porta, () =>{
             console.log("servidor conectado.")
         })

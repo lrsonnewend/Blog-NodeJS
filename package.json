@@ -1,0 +1,24 @@
+{
+  "name": "blognode",
+  "version": "1.0.0",
+  "description": "blog básico feito para aprendizado da ferramenta nodejs",
+  "main": "app.js",
+  "dependencies": {
+    "bootstrap": "^4.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lrsonnewend/Blog-NodeJS.git"
+  },
+  "author": "Lucas Sonnewend",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lrsonnewend/Blog-NodeJS/issues"
+  },
+  "homepage": "https://github.com/lrsonnewend/Blog-NodeJS#readme"
+}
